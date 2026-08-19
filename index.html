@@ -3,33 +3,851 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>テストページ</title>
+  <meta name="description" content="河合陸の映像・AI・プログラミング・デザイン・CG・ゲーム制作をまとめたポートフォリオサイトです。">
+  <title>河合陸 | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --black: #111111;
+      --dark: #242424;
+      --gray-700: #4b4b4b;
+      --gray-500: #777777;
+      --gray-300: #cfcfcf;
+      --gray-200: #e7e7e7;
+      --gray-100: #f4f4f4;
+      --white: #ffffff;
+      --radius-lg: 32px;
+      --radius-md: 22px;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      --content: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
     body {
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
       margin: 0;
-      color: white;
-      font-family: system-ui, sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      background: var(--white);
+      color: var(--black);
+      font-family: "M PLUS Rounded 1c", system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.8;
+      letter-spacing: 0.025em;
+    }
+
+    img,
+    video {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    video:focus-visible {
+      outline: 4px solid var(--black);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 999;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: var(--black);
+      color: var(--white);
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--gray-200);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      width: min(calc(100% - 32px), var(--content));
+      min-height: 88px;
+      margin: auto;
+    }
+
+    .brand {
+      flex: 0 0 auto;
+      font-size: 1.28rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .site-nav {
+      display: flex;
+      flex: 1;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 0;
+      scrollbar-width: thin;
+    }
+
+    .site-nav a {
+      flex: 0 0 auto;
+      min-height: 48px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      color: var(--gray-700);
+      font-size: 0.94rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .site-nav a:hover {
+      background: var(--black);
+      color: var(--white);
     }
 
     main {
-      padding: 40px;
+      overflow: hidden;
+    }
+
+    .section {
+      padding: 104px 0;
+    }
+
+    .section:nth-of-type(even) {
+      background: var(--gray-100);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--content));
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      margin: 0 0 20px;
+      padding: 6px 16px;
+      border: 2px solid var(--black);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
     }
 
     h1 {
-      font-size: clamp(2rem, 8vw, 5rem);
-      margin: 0 0 16px;
+      margin-bottom: 24px;
+      font-size: clamp(3.4rem, 10vw, 8.2rem);
+      font-weight: 900;
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    h3 {
+      margin-bottom: 12px;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .lead {
+      max-width: 820px;
+      color: var(--gray-700);
+      font-size: clamp(1.08rem, 2.2vw, 1.32rem);
+      font-weight: 800;
+    }
+
+    .hero {
+      padding-top: 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+      align-items: center;
+      gap: clamp(34px, 7vw, 90px);
+    }
+
+    .hero-name {
+      margin-bottom: 26px;
+      font-size: 1.28rem;
+      font-weight: 900;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      margin-bottom: 32px;
+      color: var(--gray-700);
+      font-size: 1.12rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 12px 24px;
+      border: 3px solid var(--black);
+      border-radius: 18px;
+      background: var(--black);
+      color: var(--white);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 6px 6px 0 var(--gray-300);
+    }
+
+    .button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 9px 9px 0 var(--gray-300);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      border: 3px solid var(--black);
+      border-radius: 48px;
+      background: var(--gray-200);
+      box-shadow: 16px 16px 0 var(--black);
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+    }
+
+    .media-fallback {
+      display: grid;
+      position: absolute;
+      inset: 0;
+      place-items: center;
+      padding: 32px;
+      color: var(--gray-700);
+      text-align: center;
+    }
+
+    .media-fallback strong {
+      display: block;
+      color: var(--black);
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .profile-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 58px;
+    }
+
+    .profile-item {
+      padding: 24px;
+      border: 2px solid var(--black);
+      border-radius: var(--radius-md);
+      background: var(--white);
+    }
+
+    .profile-item span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gray-500);
+      font-size: 0.84rem;
+    }
+
+    .profile-item strong {
+      font-size: 1.08rem;
+      font-weight: 900;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .section-number {
+      color: var(--gray-300);
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 900;
+      line-height: 0.8;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .work-card {
+      overflow: hidden;
+      border: 2px solid var(--black);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .work-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .media-shell {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-bottom: 2px solid var(--black);
+      background: var(--dark);
+    }
+
+    .media-shell video,
+    .media-shell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-file {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      margin: 0;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--black);
+      font-size: 0.72rem;
+      line-height: 1.4;
+    }
+
+    .card-body {
+      padding: 28px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--gray-200);
+      color: var(--dark);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .card-body p:last-child {
+      margin-bottom: 0;
+      color: var(--gray-700);
+    }
+
+    .project-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.15fr);
+      overflow: hidden;
+      border: 2px solid var(--black);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .project-card .media-shell {
+      min-height: 330px;
+      border-right: 2px solid var(--black);
+      border-bottom: 0;
+    }
+
+    .project-card .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(30px, 5vw, 56px);
+    }
+
+    .placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .placeholder-card {
+      min-height: 320px;
+      padding: 34px;
+      border: 3px dashed var(--gray-500);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+    }
+
+    .placeholder-card .file-list {
+      margin: 24px 0 0;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      font-size: 0.88rem;
+      overflow-wrap: anywhere;
+    }
+
+    .asset-guide {
+      margin-top: 40px;
+      padding: clamp(28px, 5vw, 48px);
+      border-radius: var(--radius-lg);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .asset-guide h3 {
+      margin-bottom: 18px;
+    }
+
+    .asset-guide ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 28px;
+      margin: 0;
+      padding-left: 1.4em;
+    }
+
+    .asset-guide code {
+      font-family: ui-monospace, monospace;
+      font-size: 0.9em;
+    }
+
+    .site-footer {
+      padding: 46px 0;
+      border-top: 2px solid var(--black);
+      background: var(--white);
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-row p {
+      margin: 0;
+    }
+
+    .footer-row a {
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual,
+      .hero-visual img {
+        min-height: 420px;
+      }
+
+      .work-grid,
+      .placeholder-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card.wide {
+        grid-column: auto;
+      }
+
+      .project-card .media-shell {
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 2px solid var(--black);
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 17px;
+      }
+
+      .nav-wrap {
+        display: block;
+        padding: 12px 0 8px;
+      }
+
+      .brand {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .site-nav {
+        margin-right: -16px;
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-visual,
+      .hero-visual img {
+        min-height: 340px;
+      }
+
+      .profile-strip,
+      .asset-guide ul {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-number {
+        margin-top: 30px;
+      }
+
+      .card-body,
+      .placeholder-card {
+        padding: 24px;
+      }
+
+      .footer-row {
+        display: block;
+      }
+
+      .footer-row a {
+        display: inline-block;
+        margin-top: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Hello, World!</h1>
-    <p>GitHub Pages / Cloudflare 接続テストページです。</p>
+  <a class="skip-link" href="#main-content">本文へ移動</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#top">RIKU KAWAI</a>
+      <nav class="site-nav" aria-label="メインメニュー">
+        <a href="#top">Top</a>
+        <a href="#movie">Movie</a>
+        <a href="#programming">Programming・AI</a>
+        <a href="#design">Design</a>
+        <a href="#cg-game">CG・GAME</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section hero" id="top">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Portfolio 2026</p>
+            <h1>My<br>Portfolio</h1>
+            <p class="hero-name">河合 陸 / Riku Kawai</p>
+            <p class="hero-copy">映像制作からAI・プログラミングへ。小学生の頃から続けてきた動画編集と、高校で広げたアプリケーション開発を中心に紹介します。</p>
+            <a class="button" href="#movie">作品を見る</a>
+          </div>
+
+          <div class="hero-visual">
+            <div class="media-fallback" id="top-fallback">
+              <p><strong>TOP IMAGE</strong><code>assets/top.png</code> を配置してください</p>
+            </div>
+            <img src="assets/top.png" alt="河合陸のポートフォリオ メインビジュアル" onload="document.getElementById('top-fallback').hidden=true" onerror="this.hidden=true">
+          </div>
+        </div>
+
+        <div class="profile-strip" aria-label="プロフィール概要">
+          <div class="profile-item">
+            <span>FIELD</span>
+            <strong>映像 / AI / プログラミング / Unity</strong>
+          </div>
+          <div class="profile-item">
+            <span>STRENGTH</span>
+            <strong>企画・制作・チームワーク</strong>
+          </div>
+          <div class="profile-item">
+            <span>TOOLS</span>
+            <strong>Affinity / After Effects / DaVinci Resolve</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="movie">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Movie</p>
+            <h2>映像制作</h2>
+            <p class="lead">動画編集、構成、台本、チーム制作。長く続けてきた映像制作の歩みです。</p>
+          </div>
+          <span class="section-number" aria-hidden="true">01</span>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card wide">
+            <div class="media-shell">
+              <video controls preload="metadata" poster="assets/movie-yukkuri.jpg">
+                <source src="assets/movie-yukkuri.mp4" type="video/mp4">
+                動画を再生できないブラウザです。
+              </video>
+              <p class="media-file">assets/movie-yukkuri.mp4</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2020 -</span><span class="tag">動画編集</span><span class="tag">企画・台本</span></div>
+              <h3>ゆっくり実況で培った動画制作の基本</h3>
+              <p>ゆっくり動画の制作を通して、編集だけでなく、構成や台本など動画そのものを組み立てる力を学びました。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="media-shell">
+              <video controls preload="metadata" poster="assets/movie-school.jpg">
+                <source src="assets/movie-school.mp4" type="video/mp4">
+              </video>
+              <p class="media-file">assets/movie-school.mp4</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2023 -</span><span class="tag">学校制作</span></div>
+              <h3>中学・高校での動画編集</h3>
+              <p>中学の卒業制作ではクラスでドラマを制作し、高校では文化祭のCMを制作しました。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="media-shell">
+              <video controls preload="metadata" poster="assets/movie-club.jpg">
+                <source src="assets/movie-club.mp4" type="video/mp4">
+              </video>
+              <p class="media-file">assets/movie-club.mp4</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2024 - 2026</span><span class="tag">部活動</span></div>
+              <h3>部活動内での動画制作</h3>
+              <p>部紹介動画や校外向けの情報科紹介動画を制作。シンギュラリティバトルクエストXQなどにも出演しました。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="media-shell">
+              <video controls preload="metadata" poster="assets/movie-furusato-cm.jpg">
+                <source src="assets/movie-furusato-cm.mp4" type="video/mp4">
+              </video>
+              <p class="media-file">assets/movie-furusato-cm.mp4</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2025.09 - 10</span><span class="tag">受賞</span><span class="tag">チーム制作</span></div>
+              <h3>山形ふるさとCM大賞での受賞</h3>
+              <p>地元・酒田市のCMを制作し、スクール部門で受賞。時間とフォーマットが決められた中で、実践的なチーム制作を経験しました。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="media-shell">
+              <video controls preload="metadata" poster="assets/movie-after-effects.jpg">
+                <source src="assets/movie-after-effects.mp4" type="video/mp4">
+              </video>
+              <p class="media-file">assets/movie-after-effects.mp4</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2026 -</span><span class="tag">After Effects</span><span class="tag">Motion</span></div>
+              <h3>楽曲のモーションエフェクト動画</h3>
+              <p>モーショングラフィックスの学習として、好きな楽曲を題材にAfter Effectsで制作しました。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="programming">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Programming・AI</p>
+            <h2>アプリケーション開発</h2>
+            <p class="lead">課題を見つけ、AIやWeb技術を使って、使いやすい形にすることを目指しています。</p>
+          </div>
+          <span class="section-number" aria-hidden="true">02</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="media-shell">
+              <img src="assets/ai-club.jpg" alt="やまがたAI部で制作した作品の紹介画像" onerror="this.hidden=true">
+              <p class="media-file">assets/ai-club.jpg</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2024.04 - 2026.03</span><span class="tag">RAG</span><span class="tag">LLM</span></div>
+              <h3>やまがたAI部での2年間</h3>
+              <p>RAG（検索拡張生成）をはじめとした、LLMに関係するジャンルのアプリケーションをチームで開発しました。</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="media-shell">
+              <img src="assets/cragent.jpg" alt="課題研究で開発したCRAgentの画面" onerror="this.hidden=true">
+              <p class="media-file">assets/cragent.jpg</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2026.04 -</span><span class="tag">Web App</span><span class="tag">AI Assistant</span></div>
+              <h3>課題研究でのアプリ開発</h3>
+              <p>Google Classroomから問題を作成し、タスク管理をより分かりやすくするアプリケーションを開発。AIアシスタントなどの機能も備えています。</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="media-shell">
+              <img src="assets/look-task.jpg" alt="LOOK TASKアプリケーションの画面" onerror="this.hidden=true">
+              <p class="media-file">assets/look-task.jpg</p>
+            </div>
+            <div class="card-body">
+              <div class="meta"><span class="tag">2026.08</span><span class="tag">Web App</span><span class="tag">API</span></div>
+              <h3>LOOK TASK</h3>
+              <p>G's CAMP YAMAGATAなどへの参加を通じて制作した、APIを利用するタスクアプリケーションです。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="design">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Design</p>
+            <h2>デザイン</h2>
+            <p class="lead">Affinityを使った誌面・サムネイル・作品紹介のデザインを掲載するためのセクションです。</p>
+          </div>
+          <span class="section-number" aria-hidden="true">03</span>
+        </div>
+
+        <div class="placeholder-grid">
+          <article class="placeholder-card">
+            <h3>サムネイル・グラフィック</h3>
+            <p>動画制作で作成したサムネイルやグラフィックを追加できます。</p>
+            <p class="file-list">画像: <code>assets/design-thumbnail.jpg</code></p>
+          </article>
+          <article class="placeholder-card">
+            <h3>ポートフォリオ・誌面</h3>
+            <p>Affinityを使って構成した誌面や作品紹介を追加できます。</p>
+            <p class="file-list">画像: <code>assets/design-portfolio.jpg</code></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cg-game">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">CG・GAME</p>
+            <h2>CG・ゲーム制作</h2>
+            <p class="lead">UnityやCG作品を追加できるよう、画像と動画の両方に対応した展示枠を準備しています。</p>
+          </div>
+          <span class="section-number" aria-hidden="true">04</span>
+        </div>
+
+        <div class="placeholder-grid">
+          <article class="placeholder-card">
+            <h3>Unity / GAME</h3>
+            <p>ゲーム画面、操作動画、制作した機能の紹介を追加できます。</p>
+            <p class="file-list">動画: <code>assets/game-demo.mp4</code><br>画像: <code>assets/game-thumbnail.jpg</code></p>
+          </article>
+          <article class="placeholder-card">
+            <h3>CG Work</h3>
+            <p>3DCG、レンダリング、モーション作品を追加できます。</p>
+            <p class="file-list">動画: <code>assets/cg-demo.mp4</code><br>画像: <code>assets/cg-thumbnail.jpg</code></p>
+          </article>
+        </div>
+
+        <aside class="asset-guide" aria-labelledby="asset-guide-title">
+          <h3 id="asset-guide-title">あとから追加する主なファイル</h3>
+          <ul>
+            <li><code>assets/top.png</code></li>
+            <li><code>assets/movie-yukkuri.mp4</code></li>
+            <li><code>assets/movie-school.mp4</code></li>
+            <li><code>assets/movie-club.mp4</code></li>
+            <li><code>assets/movie-furusato-cm.mp4</code></li>
+            <li><code>assets/movie-after-effects.mp4</code></li>
+            <li><code>assets/ai-club.jpg</code></li>
+            <li><code>assets/cragent.jpg</code></li>
+            <li><code>assets/look-task.jpg</code></li>
+            <li><code>assets/game-demo.mp4</code></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2026 Riku Kawai. All Rights Reserved.</p>
+      <a href="#top">ページ上部へ戻る</a>
+    </div>
+  </footer>
 </body>
 </html>
+
