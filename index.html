@@ -341,10 +341,15 @@
     }
 
     .media-shell video,
-    .media-shell img {
+    .media-shell img,
+    .media-shell iframe {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .media-shell iframe {
+      border: 0;
     }
 
     .media-file {
@@ -671,11 +676,8 @@
         <div class="work-grid">
           <article class="work-card wide">
             <div class="media-shell">
-              <video controls preload="metadata" poster="assets/movie-yukkuri.jpg">
-                <source src="assets/movie-yukkuri.mp4" type="video/mp4">
-                動画を再生できないブラウザです。
-              </video>
-              <p class="media-file">assets/movie-yukkuri.mp4</p>
+              <iframe src="https://www.youtube-nocookie.com/embed/mcKrwvnTihk" title="ゆっくり実況で培った動画制作の基本 代表動画" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <p class="media-file">YouTube / mcKrwvnTihk</p>
             </div>
             <div class="card-body">
               <div class="meta"><span class="tag">2020 -</span><span class="tag">動画編集</span><span class="tag">企画・台本</span></div>
@@ -687,10 +689,8 @@
 
           <article class="work-card">
             <div class="media-shell">
-              <video controls preload="metadata" poster="assets/movie-school.jpg">
-                <source src="assets/movie-school.mp4" type="video/mp4">
-              </video>
-              <p class="media-file">assets/movie-school.mp4</p>
+              <iframe src="https://www.youtube-nocookie.com/embed/wKZzK5h-JlY" title="中学・高校での動画編集 作品動画" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <p class="media-file">YouTube / wKZzK5h-JlY</p>
             </div>
             <div class="card-body">
               <div class="meta"><span class="tag">2023 -</span><span class="tag">学校制作</span></div>
@@ -860,8 +860,6 @@
           <h3 id="asset-guide-title">あとから追加する主なファイル</h3>
           <ul>
             <li><code>assets/top.png</code></li>
-            <li><code>assets/movie-yukkuri.mp4</code></li>
-            <li><code>assets/movie-school.mp4</code></li>
             <li><code>assets/movie-club.mp4</code></li>
             <li><code>assets/movie-furusato-cm.mp4</code></li>
             <li><code>assets/movie-after-effects.mp4</code></li>
