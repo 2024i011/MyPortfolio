@@ -11,7 +11,7 @@
   --white: #fff;
   --radius-lg: 34px;
   --radius-md: 22px;
-  --content: 1080px;
+  --content: 1240px;
 }
 
 * {
@@ -204,7 +204,7 @@ h3 {
 
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
   margin-top: 46px;
 }
@@ -338,4 +338,3 @@ h3 {
     scroll-behavior: auto;
   }
 }
-
