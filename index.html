@@ -380,9 +380,30 @@
       font-weight: 900;
     }
 
-    .card-body p:last-child {
+    .card-body > p {
       margin-bottom: 0;
       color: var(--gray-700);
+    }
+
+    .detail-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      min-height: 52px;
+      margin-top: 22px;
+      padding: 10px 20px;
+      border: 2px solid var(--black);
+      border-radius: 16px;
+      background: var(--black);
+      color: var(--white);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .detail-link:hover {
+      background: var(--white);
+      color: var(--black);
     }
 
     .project-grid {
@@ -660,6 +681,7 @@
               <div class="meta"><span class="tag">2020 -</span><span class="tag">動画編集</span><span class="tag">企画・台本</span></div>
               <h3>ゆっくり実況で培った動画制作の基本</h3>
               <p>ゆっくり動画の制作を通して、編集だけでなく、構成や台本など動画そのものを組み立てる力を学びました。</p>
+              <a class="detail-link" href="movie/yukkuri/">詳細を見る</a>
             </div>
           </article>
 
@@ -674,6 +696,7 @@
               <div class="meta"><span class="tag">2023 -</span><span class="tag">学校制作</span></div>
               <h3>中学・高校での動画編集</h3>
               <p>中学の卒業制作ではクラスでドラマを制作し、高校では文化祭のCMを制作しました。</p>
+              <a class="detail-link" href="movie/School/">詳細を見る</a>
             </div>
           </article>
 
@@ -688,6 +711,7 @@
               <div class="meta"><span class="tag">2024 - 2026</span><span class="tag">部活動</span></div>
               <h3>部活動内での動画制作</h3>
               <p>部紹介動画や校外向けの情報科紹介動画を制作。シンギュラリティバトルクエストXQなどにも出演しました。</p>
+              <a class="detail-link" href="movie/ITSCIENCE/">詳細を見る</a>
             </div>
           </article>
 
@@ -702,6 +726,7 @@
               <div class="meta"><span class="tag">2025.09 - 10</span><span class="tag">受賞</span><span class="tag">チーム制作</span></div>
               <h3>山形ふるさとCM大賞での受賞</h3>
               <p>地元・酒田市のCMを制作し、スクール部門で受賞。時間とフォーマットが決められた中で、実践的なチーム制作を経験しました。</p>
+              <a class="detail-link" href="movie/koara/">詳細を見る</a>
             </div>
           </article>
 
@@ -716,6 +741,7 @@
               <div class="meta"><span class="tag">2026 -</span><span class="tag">After Effects</span><span class="tag">Motion</span></div>
               <h3>楽曲のモーションエフェクト動画</h3>
               <p>モーショングラフィックスの学習として、好きな楽曲を題材にAfter Effectsで制作しました。</p>
+              <a class="detail-link" href="movie/AfterEffects/">詳細を見る</a>
             </div>
           </article>
         </div>
@@ -743,6 +769,7 @@
               <div class="meta"><span class="tag">2024.04 - 2026.03</span><span class="tag">RAG</span><span class="tag">LLM</span></div>
               <h3>やまがたAI部での2年間</h3>
               <p>RAG（検索拡張生成）をはじめとした、LLMに関係するジャンルのアプリケーションをチームで開発しました。</p>
+              <a class="detail-link" href="Programming/YMAI/">詳細を見る</a>
             </div>
           </article>
 
@@ -755,6 +782,7 @@
               <div class="meta"><span class="tag">2026.04 -</span><span class="tag">Web App</span><span class="tag">AI Assistant</span></div>
               <h3>課題研究でのアプリ開発</h3>
               <p>Google Classroomから問題を作成し、タスク管理をより分かりやすくするアプリケーションを開発。AIアシスタントなどの機能も備えています。</p>
+              <a class="detail-link" href="Programming/CRAgent/">詳細を見る</a>
             </div>
           </article>
 
@@ -767,6 +795,7 @@
               <div class="meta"><span class="tag">2026.08</span><span class="tag">Web App</span><span class="tag">API</span></div>
               <h3>LOOK TASK</h3>
               <p>G's CAMP YAMAGATAなどへの参加を通じて制作した、APIを利用するタスクアプリケーションです。</p>
+              <a class="detail-link" href="Programming/LOOKTASK/">詳細を見る</a>
             </div>
           </article>
         </div>
@@ -789,11 +818,13 @@
             <h3>サムネイル・グラフィック</h3>
             <p>動画制作で作成したサムネイルやグラフィックを追加できます。</p>
             <p class="file-list">画像: <code>assets/design-thumbnail.jpg</code></p>
+            <a class="detail-link" href="Design/Thumbnail/">詳細を見る</a>
           </article>
           <article class="placeholder-card">
             <h3>ポートフォリオ・誌面</h3>
             <p>Affinityを使って構成した誌面や作品紹介を追加できます。</p>
             <p class="file-list">画像: <code>assets/design-portfolio.jpg</code></p>
+            <a class="detail-link" href="Design/Portfolio/">詳細を見る</a>
           </article>
         </div>
       </div>
@@ -815,11 +846,13 @@
             <h3>Unity / GAME</h3>
             <p>ゲーム画面、操作動画、制作した機能の紹介を追加できます。</p>
             <p class="file-list">動画: <code>assets/game-demo.mp4</code><br>画像: <code>assets/game-thumbnail.jpg</code></p>
+            <a class="detail-link" href="CG-GAME/Unity/">詳細を見る</a>
           </article>
           <article class="placeholder-card">
             <h3>CG Work</h3>
             <p>3DCG、レンダリング、モーション作品を追加できます。</p>
             <p class="file-list">動画: <code>assets/cg-demo.mp4</code><br>画像: <code>assets/cg-thumbnail.jpg</code></p>
+            <a class="detail-link" href="CG-GAME/CG/">詳細を見る</a>
           </article>
         </div>
 
